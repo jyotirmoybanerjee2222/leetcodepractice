@@ -1,0 +1,66 @@
+
+/*roblem statement
+Given an array ‘a’ of size ‘n’-1 with elements of range 1 to ‘n’. The array does not contain any duplicates. Your task is to find the missing number.
+
+
+
+For example:
+Input:
+'a' = [1, 2, 4, 5], 'n' = 5
+
+Output :
+3
+
+Explanation: 3 is the missing value in the range 1 to 5.
+Detailed explanation ( Input/output format, Notes, Images )
+
+Sample Input 1 :
+4 
+1 2 3
+Sample Output 1:
+4
+Explanation Of Sample Input 1:
+4 is the missing value in the range 1 to 4.
+Sample Input 2:
+8
+1 2 3 5 6 7 8
+Sample Output 2:
+4
+Explanation Of Sample Input 2:
+4 is the missing value in the range 1 to 8.
+Expected time complexity:
+The expected time complexity is O(n).
+Constraints:
+1 <= 'n' <= 10^6 
+1 <= 'a'[i] <= 'n'
+Time Limit: 1 sec
+
+*/
+
+int missingNumber(vector<int>&a, int N) {
+
+    int n = N - 1;
+
+    // Initialize an array 'hash' of length
+    // 'N'+1 (1- based indexing) with zero.
+    int hash[N + 1] = {};
+
+    // Mark element in the hash array.
+    for (int i = 0; i < n; i++) {
+        hash[ a[i] ] = 1;
+    }
+
+    int answer = 1;
+    for (int i = 1; i <= N; i++) {
+
+        // If number is not present then
+        // update the 'answer' and break.
+        if (hash[i] == 0) {
+            answer = i;
+            break;
+        }
+    }
+
+    // Return the 'answer' here.
+    return answer;
+}
