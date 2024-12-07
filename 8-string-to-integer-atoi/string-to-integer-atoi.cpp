@@ -1,52 +1,36 @@
 class Solution {
 public:
     int myAtoi(string s) {
-        int sign = +1;
-        long long int  ans = 0;
-        int i =0;
-        int value;
+        int sign = 1; // Default to positive
+        long long ans = 0; // Use long long for intermediate calculations
+        int i = 0;
 
-        while(i < s.length() && s[i] == ' ')
-        
-        
-            i++;
-        
-        
-        if(s[i] == '-')
-        {
-            sign = -1;
+        // Skip leading whitespace
+        while (i < s.length() && s[i] == ' ') {
             i++;
         }
-        else if(s[i] == '+')
-        {
+
+        // Handle sign
+        if (i < s.length() && (s[i] == '-' || s[i] == '+')) {
+            sign = (s[i] == '-') ? -1 : 1;
             i++;
         }
-        
-       
-        
-        while(i< s.length())
-        {
-            if(s[i]>='0' && s[i]<='9'){
-            
-                ans = ans *10 + (s[i] - '0');
-            
-            if(ans > INT_MAX && sign == 1)
-            {
+
+        // Process digits
+        while (i < s.length() && isdigit(s[i])) {
+            ans = ans * 10 + (s[i] - '0');
+
+            // Check for overflow or underflow
+            if (sign == 1 && ans > INT_MAX) {
                 return INT_MAX;
             }
-            if(ans > INT_MAX && sign == -1)
-            {
+            if (sign == -1 && -ans < INT_MIN) {
                 return INT_MIN;
             }
+
             i++;
         }
-        else{
-                break;
-        }
-        }
-        return ans * sign;
 
+        return ans * sign;
     }
-    
-    
 };
