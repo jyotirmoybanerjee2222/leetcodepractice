@@ -21,6 +21,7 @@ public:
         {
             i++;
         }
+        
        
         
         while(i< s.length())
