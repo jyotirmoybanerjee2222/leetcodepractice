@@ -8,6 +8,7 @@ public:
 
         while(i < s.length() && s[i] == ' ')
         
+        
             i++;
         
         
@@ -20,6 +21,7 @@ public:
         {
             i++;
         }
+       
         
         while(i< s.length())
         {
